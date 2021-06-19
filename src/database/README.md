@@ -1,4 +1,4 @@
-## Banco de dados 
+respostas## Banco de dados 
 
 O banco de dados utilizado é o [SQLite](https://www.sqlite.org/index.html) e não precisa ser configurado neste projeto, mas pode ser alterado para qualquer banco de dados suportado pelo [Typeorm](https://typeorm.io/#/).
 Para usar outro banco de dados altere o documento ```ormfig.json``` na raíz do projeto para que fique no seguinte formato:
