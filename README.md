@@ -2,7 +2,7 @@
 
 Implementação de uma APi RESTful para gerenciar usuários e seus dispositivos sensores com dados coletados.
 
-## Tecnologias
+## 🔧 Tecnologias
 
 Essa API foi desenvolvida com as seguintes tecnologias principais:
 
@@ -13,7 +13,7 @@ Essa API foi desenvolvida com as seguintes tecnologias principais:
 - [Typeorm](https://typeorm.io/#/)
 
 
-## Métodos
+## 📤 Métodos
 Requisições para a API devem seguir os padrões:
 | Método | Descrição |
 |---|---|
@@ -22,7 +22,7 @@ Requisições para a API devem seguir os padrões:
 | `PUT` | Atualiza dados de um registro ou altera sua situação. |
 | `DELETE` | Remove um registro do sistema. |
 
-## Respostas
+## 📥 Respostas
 Atualmente s respostas podem ter os seguintes status codes, mas cada uma terá sua mensagem específica.
 | Código | Descrição |
 |---|---|
@@ -32,11 +32,12 @@ Atualmente s respostas podem ter os seguintes status codes, mas cada uma terá s
 | `404` | Registro pesquisado não encontrado (Not found).|
 | `500` | Erro interno inesperado, contacte a pessoa desenvolvedora da api (Internal server error).|
 
+## 📑 Documentação
 Veja a documentação dos endpoints mais detalhada no [Swagger Hub](https://app.swaggerhub.com/search)( apenas para visualização ) importando o arquivo que se encontra em ```./src/docs/openapi.yaml``` ou no [Postman](https://documenter.getpostman.com/view/12220263/TzeXn8Xa) ( para visualização e teste  de rotas ).
 
 Detallhes sobre a modelagem de dados em ```./scr/database/README.md```.
 
-## :information_source: Como utilizar
+## ℹ️ Como utilizar
 
 ```bash
 
