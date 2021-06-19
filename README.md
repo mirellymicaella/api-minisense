@@ -6,6 +6,7 @@ Implementação de uma APi RESTful para gerenciar usuários e seus dispositivos 
 
 Essa API foi desenvolvida com as seguintes tecnologias principais:
 
+- [Typescript](https://www.typescriptlang.org/)
 - [Node.js](https://nodejs.org/en/)
 - [Express](https://expressjs.com/pt-br/)
 - [SQLite](https://www.sqlite.org/index.html)
