@@ -33,6 +33,8 @@ Atualmente s respostas podem ter os seguintes status codes, mas cada uma terá s
 
 Veja a documentação dos endpoints mais detalhada no [Swagger](link) ( apenas visualização) ou no [Postman](link) ( visualização e rotas para testar ).
 
+Detallhes sobre a modelagem de dados em ```./scr/database/README.md```.
+
 ## :information_source: Como utilizar
 
 ```bash
