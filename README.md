@@ -4,7 +4,7 @@ Implementação de uma APi RESTful para gerenciar usuários e seus dispositivos 
 
 ## Tecnologias
 
-Essa API foi desenvolvida com as seguintes tecnologias:
+Essa API foi desenvolvida com as seguintes tecnologias principais:
 
 - [Node.js](https://nodejs.org/en/)
 - [Express](https://expressjs.com/pt-br/)
