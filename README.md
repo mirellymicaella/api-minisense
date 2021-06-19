@@ -31,7 +31,7 @@ Atualmente s respostas podem ter os seguintes status codes, mas cada uma terá s
 | `404` | Registro pesquisado não encontrado (Not found).|
 | `500` | Erro interno inesperado, contacte o desenvolvedor (Internal server error).|
 
-Veja a documentação dos endpoints mais detalhada no [Swagger Hub](https://app.swaggerhub.com/search)(apenas paar visualização) importando o arquivo que se encontra em ```./src/docs/openapi.yaml``` ou no [Postman](https://documenter.getpostman.com/view/12220263/TzeXn8Xa) ( para visualização e teste  de rotas ).
+Veja a documentação dos endpoints mais detalhada no [Swagger Hub](https://app.swaggerhub.com/search)( apenas para visualização ) importando o arquivo que se encontra em ```./src/docs/openapi.yaml``` ou no [Postman](https://documenter.getpostman.com/view/12220263/TzeXn8Xa) ( para visualização e teste  de rotas ).
 
 Detallhes sobre a modelagem de dados em ```./scr/database/README.md```.
 
