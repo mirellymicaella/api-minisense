@@ -39,8 +39,7 @@ Detallhes sobre a modelagem de dados em ```./scr/database/README.md```.
 
 ```bash
 
-# Clone este repositório
-$ git clone https://gitlab.com/petengcomp/mobile/qrcode-2.0.git
+# Clone ou faça download deste repositório
 
 # Entre no diretório criado
 $ cd api-minisense
