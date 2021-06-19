@@ -1,0 +1,621 @@
+openapi: 3.0.0
+info:
+  title: MiniSense
+  description: Implemenmtação da API proposta para o projeto MiniSense.
+  termsOfService: http://swagger.io/terms/
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/mirelly_micaella/miniSense/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: http://localhost:3333
+  description: SwaggerHub API Auto Mocking
+tags:
+- name: Users
+  description: Usuários do sistema
+- name: MeasurementUnits
+  description: Unidades de medida
+- name: SensorDevice
+  description: Dispositivos sensores de um usuário
+- name: DataStream
+  description: Stream de dados de um dispositivo sensor.
+paths:
+  /users:
+    post:
+      tags:
+      - Users
+      summary: Cadastra um novo usuário
+      operationId: usersPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+      responses:
+        "200":
+          description: Cadatrado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      x-swagger-router-controller: Users
+  /users/{userId}:
+    delete:
+      tags:
+      - Users
+      summary: Deleta um usuário e consequentemente seus dispositivos com streams
+        e dados
+      operationId: usersUserIdDELETE
+      parameters:
+      - name: userId
+        in: path
+        description: ID do usuário
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+      x-swagger-router-controller: Users
+  /units:
+    get:
+      tags:
+      - MeasurementUnits
+      summary: Lista todas as unidades de medida cadastradas
+      operationId: unitsGET
+      responses:
+        "200":
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MeasurementUnit'
+                x-content-type: application/json
+      x-swagger-router-controller: MeasurementUnits
+    post:
+      tags:
+      - MeasurementUnits
+      summary: Cadastra uma nova unidade de medida
+      operationId: unitsPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_1'
+      responses:
+        "200":
+          description: Cadatrada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeasurementUnit'
+      x-swagger-router-controller: MeasurementUnits
+  /users/{userId}/devices:
+    get:
+      tags:
+      - SensorDevice
+      summary: Lista todos os dispositivos de um usuário
+      operationId: usersUserIdDevicesGET
+      parameters:
+      - name: userId
+        in: path
+        description: ID do usuário
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SensorDevicesFromUser'
+                x-content-type: application/json
+      x-swagger-router-controller: SensorDevice
+    post:
+      tags:
+      - SensorDevice
+      summary: Cadastra um novo dispositivo sensor para um usuário
+      operationId: usersUserIdDevicesPOST
+      parameters:
+      - name: userId
+        in: path
+        description: ID do usuário
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_2'
+      responses:
+        "200":
+          description: Cadatrado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SensorDeviceCreated'
+      x-swagger-router-controller: SensorDevice
+  /devices/{deviceKey}:
+    get:
+      tags:
+      - SensorDevice
+      summary: Mostra detalhes de um dispositivo específico
+      operationId: devicesDeviceKeyGET
+      parameters:
+      - name: deviceKey
+        in: path
+        description: Chave do dispositivo
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SensorDeviceDetail'
+                x-content-type: application/json
+      x-swagger-router-controller: SensorDevice
+    delete:
+      tags:
+      - SensorDevice
+      summary: Deleta um dispositivo com suas streams e dados
+      operationId: devicesDeviceKeyDELETE
+      parameters:
+      - name: deviceKey
+        in: path
+        description: Chave do dispositivo
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+      x-swagger-router-controller: SensorDevice
+  /devices/{deviceKey}/streams:
+    post:
+      tags:
+      - DataStream
+      summary: Cadastra uma nova stream de dados para um dispositivo
+      operationId: devicesDeviceKeyStreamsPOST
+      parameters:
+      - name: deviceKey
+        in: path
+        description: Chave do dispositivo
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_3'
+      responses:
+        "200":
+          description: Cadatrada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataStream'
+      x-swagger-router-controller: DataStream
+  /streams/{streamKey}:
+    get:
+      tags:
+      - DataStream
+      summary: Mostra detalhes de uma stream específica
+      operationId: streamsStreamKeyGET
+      parameters:
+      - name: streamKey
+        in: path
+        description: Chave da stream
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataStreamDetailed'
+      x-swagger-router-controller: DataStream
+    post:
+      tags:
+      - DataStream
+      summary: Ativa ou desativa uma stream
+      operationId: streamsStreamKeyPOST
+      parameters:
+      - name: streamKey
+        in: path
+        description: Chave da stream
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_4'
+      responses:
+        "200":
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataStream'
+      x-swagger-router-controller: DataStream
+  /streams/{streamKey}/data:
+    post:
+      tags:
+      - DataStream
+      summary: Registra uma medição para uma stream
+      operationId: streamsStreamKeyDataPOST
+      parameters:
+      - name: streamKey
+        in: path
+        description: Chave da stream
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Measurement'
+      responses:
+        "200":
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeasurementPosted'
+      x-swagger-router-controller: DataStream
+components:
+  schemas:
+    User:
+      required:
+      - email
+      - username
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        username:
+          type: string
+          example: User Example
+        email:
+          type: string
+          format: email
+          example: example@domain.com
+      example:
+        id: 1
+        email: example@domain.com
+        username: User Example
+    MeasurementUnit:
+      required:
+      - description
+      - symbol
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        symbol:
+          type: string
+          example: ºC
+        description:
+          type: string
+          example: Celsius
+      example:
+        symbol: ºC
+        description: Celsius
+        id: 1
+    Measurement:
+      type: object
+      properties:
+        timestamp:
+          type: number
+          example: 1506455551
+        value:
+          type: number
+          example: 28.5
+      example:
+        value: 28.5
+        timestamp: 1506455551
+    MeasurementPosted:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        timestamp:
+          type: number
+          example: 1506455551
+        value:
+          type: number
+          example: 28.5
+        unitId:
+          type: integer
+          example: 2
+      example:
+        unitId: 2
+        id: 1
+        value: 28.5
+        timestamp: 1506455551
+    DataStream:
+      required:
+      - label
+      - unitId
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        key:
+          type: string
+          example: 8961bd9a4d1e439ebf3b86af5b9d5c1f
+        label:
+          type: string
+          example: temperature
+        unitId:
+          type: integer
+          example: 1
+        deviceId:
+          type: integer
+          example: 2
+        measurementCount:
+          type: integer
+          example: 0
+      example:
+        measurementCount: 0
+        unitId: 1
+        id: 1
+        label: temperature
+        deviceId: 2
+        key: 8961bd9a4d1e439ebf3b86af5b9d5c1f
+    DataStreamDetailed:
+      required:
+      - label
+      - unitId
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        key:
+          type: string
+          example: 8961bd9a4d1e439ebf3b86af5b9d5c1f
+        label:
+          type: string
+          example: temperature
+        unitId:
+          type: string
+          example: "1"
+        deviceId:
+          type: string
+          example: "2"
+        measurementCount:
+          type: integer
+          example: 1
+        measurements:
+          type: array
+          items:
+            $ref: '#/components/schemas/Measurement'
+      example:
+        measurementCount: 1
+        unitId: "1"
+        id: 1
+        label: temperature
+        deviceId: "2"
+        key: 8961bd9a4d1e439ebf3b86af5b9d5c1f
+        measurements:
+        - value: 28.5
+          timestamp: 1506455551
+        - value: 28.5
+          timestamp: 1506455551
+    SensorDeviceCreated:
+      required:
+      - description
+      - label
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        key:
+          type: string
+          example: 8961bd9a4d1e439ebf3b86af5b9d5c1f
+        symbol:
+          type: string
+          example: Kitchen's freezer sensor (Arduino)
+        description:
+          type: string
+          example: Kitchen's freezer sensor (Arduino)
+      example:
+        symbol: Kitchen's freezer sensor (Arduino)
+        description: Kitchen's freezer sensor (Arduino)
+        id: 1
+        key: 8961bd9a4d1e439ebf3b86af5b9d5c1f
+    SensorDevicesFromUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        key:
+          type: string
+          example: 8961bd9a4d1e439ebf3b86af5b9d5c1f
+        label:
+          type: string
+          example: Kitchen's freezer sensor (Arduino)
+        description:
+          type: string
+          example: Kitchen's freezer sensor (Arduino)
+        streams:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataStream'
+      example:
+        streams:
+        - measurementCount: 0
+          unitId: 1
+          id: 1
+          label: temperature
+          deviceId: 2
+          key: 8961bd9a4d1e439ebf3b86af5b9d5c1f
+        - measurementCount: 0
+          unitId: 1
+          id: 1
+          label: temperature
+          deviceId: 2
+          key: 8961bd9a4d1e439ebf3b86af5b9d5c1f
+        description: Kitchen's freezer sensor (Arduino)
+        id: 1
+        label: Kitchen's freezer sensor (Arduino)
+        key: 8961bd9a4d1e439ebf3b86af5b9d5c1f
+    SensorDeviceDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        key:
+          type: string
+          example: 8961bd9a4d1e439ebf3b86af5b9d5c1f
+        label:
+          type: string
+          example: Kitchen's freezer sensor (Arduino)
+        description:
+          type: string
+          example: Kitchen's freezer sensor (Arduino)
+        streams:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataStreamDetailed'
+      example:
+        streams:
+        - measurementCount: 1
+          unitId: "1"
+          id: 1
+          label: temperature
+          deviceId: "2"
+          key: 8961bd9a4d1e439ebf3b86af5b9d5c1f
+          measurements:
+          - value: 28.5
+            timestamp: 1506455551
+          - value: 28.5
+            timestamp: 1506455551
+        - measurementCount: 1
+          unitId: "1"
+          id: 1
+          label: temperature
+          deviceId: "2"
+          key: 8961bd9a4d1e439ebf3b86af5b9d5c1f
+          measurements:
+          - value: 28.5
+            timestamp: 1506455551
+          - value: 28.5
+            timestamp: 1506455551
+        description: Kitchen's freezer sensor (Arduino)
+        id: 1
+        label: Kitchen's freezer sensor (Arduino)
+        key: 8961bd9a4d1e439ebf3b86af5b9d5c1f
+    body:
+      type: object
+      properties:
+        username:
+          type: string
+          example: User Example
+        email:
+          type: string
+          format: email
+          example: example@domain.com
+      format: json
+    inline_response_200:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Usuário deletado
+      example:
+        message: Usuário deletado
+    body_1:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: ºC
+        description:
+          type: string
+          example: Celsius
+      format: json
+    body_2:
+      type: object
+      properties:
+        label:
+          type: string
+          example: Kitchen's freezer sensor (Arduino)
+        description:
+          type: string
+          example: Kitchen's freezer sensor (Arduino)
+      format: json
+    inline_response_200_1:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Dispositivo deletado
+      example:
+        message: Dispositivo deletado
+    body_3:
+      type: object
+      properties:
+        label:
+          type: string
+          example: temperature
+        unitId:
+          type: integer
+          example: 1
+      format: json
+    body_4:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          example: true
+      format: json
