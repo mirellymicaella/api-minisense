@@ -1,6 +1,6 @@
-respostas## Banco de dados 
+## 🗄 Banco de dados 
 
-O banco de dados utilizado é o [SQLite](https://www.sqlite.org/index.html) e não precisa ser configurado neste projeto, mas pode ser alterado para qualquer banco de dados suportado pelo [Typeorm](https://typeorm.io/#/).
+O banco de dados utilizado é o [SQLite](https://www.sqlite.org/index.html) e não precisa ser configurado neste projeto> Entretanto, pode ser alterado para qualquer outro banco de dados suportado pelo [Typeorm](https://typeorm.io/#/).
 Para usar outro banco de dados altere o documento ```ormfig.json``` na raíz do projeto para que fique no seguinte formato:
 
 ```json
@@ -28,7 +28,7 @@ Em seguida, construa todas as tabelas no banco de dados criado usando o comando:
 ```console
 yarn typeorm migration:run
 ```
-## Diagrama
+## 📈 Diagrama
 
 <img src="https://i.postimg.cc/pXQ5gmmn/Diagrama-mini-Sense.png" width="1000">
 
