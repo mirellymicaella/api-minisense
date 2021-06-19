@@ -26,7 +26,3 @@ app.use(
 );
 
 export { app };
-
-// //* yarn typeorm migration:create -n x
-// //* yarn typeorm migration:run
-// //*yarn typeorm migration:revert

@@ -7,7 +7,7 @@ const dataStreamController = new DataStreamController();
 const router = Router();
 
 router.put('/:streamKey', dataStreamController.update);
-router.post('/:streamKey/data', dataStreamController.register);
+router.post('/:streamKey/datas', dataStreamController.register);
 
 
 module.exports = router;

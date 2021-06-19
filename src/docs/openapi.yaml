@@ -152,7 +152,7 @@ paths:
     get:
       tags:
       - SensorDevice
-      summary: Mostra detalhes de um dispositivo específico
+      summary:  Mostra detalhes de um dispositivo específico . Essa consulta individual de um dispositivo retorna adicionalmente os 5 dados mais recentes de cada stream
       operationId: devicesDeviceKeyGET
       parameters:
       - name: deviceKey
@@ -274,7 +274,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DataStream'
       x-swagger-router-controller: DataStream
-  /streams/{streamKey}/data:
+  /streams/{streamKey}/datas:
     post:
       tags:
       - DataStream
